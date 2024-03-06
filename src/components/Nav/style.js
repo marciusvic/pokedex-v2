@@ -4,7 +4,8 @@ export const style = {
         backgroundColor: '#C22E29',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginBottom: '2em'
     },
     imgLogo: {
         height: '3em',
