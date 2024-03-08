@@ -9,7 +9,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7'
 import { useTheme } from '@mui/material/styles'
 import { style } from "./style"
 
-export const NavComponent = ({ setDarkMode }) => {
+export const NavComponent = ({ setDarkMode, onSearchChange }) => {
     const theme = useTheme()
     const [searchTerm, setSearchTerm] = useState('')
 
@@ -18,7 +18,9 @@ export const NavComponent = ({ setDarkMode }) => {
     }
 
     const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value)
+        const term = event.target.value
+        setSearchTerm(term)
+        onSearchChange(term)
     }
 
     const handleSearchSubmit = () => {

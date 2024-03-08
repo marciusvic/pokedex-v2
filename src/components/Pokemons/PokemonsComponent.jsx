@@ -8,14 +8,14 @@ import { Grid } from "@mui/material"
 
 import axios from 'axios'
 
-export const PokemonsComponent = () => {
+export const PokemonsComponent = ({ searchTerm }) => {
     const [pokemons, setPokemons] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const promises = []
-                for (let i = 1; i <= 151; i++) {
+                for (let i = 1; i <= 251; i++) {
                     promises.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${i}`))
                 }
                 const responses = await Promise.all(promises)
@@ -31,10 +31,12 @@ export const PokemonsComponent = () => {
     return (
         <Box>
             <Grid container spacing={2} sx={style.divGrid}>
-                {pokemons.map(pokemon => (
-                    <Grid key={pokemon.id} item xs={12} sm={6} md={4} lg={4} xl={3}>
-                        <PokecardComponent name={pokemon.name} id={pokemon.id} type={pokemon.types} img={pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default} />
-                    </Grid>
+                {pokemons
+                    .filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()))
+                    .map(pokemon => (
+                        <Grid key={pokemon.id} item xs={12} sm={6} md={4} lg={4} xl={3}>
+                            <PokecardComponent name={pokemon.name} id={pokemon.id} type={pokemon.types} img={pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default} />
+                        </Grid>
                 ))}
             </Grid>
         </Box>
