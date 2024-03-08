@@ -26,7 +26,8 @@ export const style = {
             backgroundColor: 'rgba(255, 255, 255, 0.1)'
         },
         '@media (max-width: 600px)': {
-            marginRight: '0em'
+            marginRight: '0em',
+            width: '12em'
         }
     },
     boxSnS:{
