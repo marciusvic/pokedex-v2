@@ -4,7 +4,7 @@ export const style = {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: 'transparent',
         borderRadius: '20px',
         boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.5)',
         width: '400px',

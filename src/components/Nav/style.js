@@ -13,11 +13,20 @@ export const style = {
     },
     search: {
         marginRight: '1.5em',
-        backgroundColor: '#fff',
+        backgroundColor: 'transparent',
         borderRadius: '5px',
         width: '15em',
         display: 'flex',
         alignItems: 'center',
-        paddingLeft: '0.5em'
-    }
+        paddingLeft: '0.5em',
+        '&:hover': {
+            backgroundColor: 'rgba(255, 255, 255, 0.1)'
+        }
+    },
+    boxSnS:{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: '1.5em'
+    },
 }
