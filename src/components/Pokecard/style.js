@@ -9,7 +9,12 @@ export const style = {
         boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.5)',
         width: '400px',
         height: '170px',
-        margin: '10px'
+        margin: '10px',
+        '@media (max-width: 600px)': {
+            width: '95vw',
+            height: '150px',
+            margin: '5px',
+        }
     },
     dados: {
         display: 'flex',

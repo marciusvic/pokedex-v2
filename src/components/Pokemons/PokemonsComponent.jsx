@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { PokecardComponent } from '../Pokecard/PokecardComponent'
 
-import { style } from "./style"
-
 import Box from '@mui/material/Box'
 import { Grid } from "@mui/material"
+import { style } from './style'
 
 import axios from 'axios'
 
 export const PokemonsComponent = ({ searchTerm }) => {
     const [pokemons, setPokemons] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,6 +21,7 @@ export const PokemonsComponent = ({ searchTerm }) => {
                 const responses = await Promise.all(promises)
                 const data = responses.map(response => response.data)
                 setPokemons(data)
+                setLoading(false)
             } catch (error) {
                 console.error('Erro ao buscar os Pokémon:', error)
             }
@@ -29,15 +30,18 @@ export const PokemonsComponent = ({ searchTerm }) => {
     }, [])
     
     return (
-        <Box>
-            <Grid container spacing={2} sx={style.divGrid}>
-                {pokemons
+        <Box sx={style.root}>
+            <Grid container justifyContent='space-evenly'>
+                {loading ? Array.from({ length: 251 }, (_, index) => (
+                    <Box key={index} sx={style.boxLoading}></Box>
+                )) : pokemons
                     .filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()))
                     .map(pokemon => (
-                        <Grid key={pokemon.id} item xs={12} sm={6} md={4} lg={4} xl={3}>
+                        <Box key={pokemon.id}>
                             <PokecardComponent name={pokemon.name} id={pokemon.id} type={pokemon.types} img={pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default} />
-                        </Grid>
+                        </Box>
                 ))}
+                <Box sx={style.boxInvisible}></Box>
             </Grid>
         </Box>
     )
